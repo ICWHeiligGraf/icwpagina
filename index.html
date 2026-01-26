@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6ICW | Interactieve Pagina</title>
+    <style>
+        /* CSS Variabelen voor eenvoudige thema-wissel */
+        :root {
+            --bg-color: #2c3e50;
+            --text-color: #ecf0f1;
+            --accent-color: #f1c40f;
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
+
+        .light-mode {
+            --bg-color: #ecf0f1;
+            --text-color: #2c3e50;
+            --accent-color: #e67e22;
+            --card-bg: rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            transition: background-color 0.5s ease; /* Zachte overgang */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* CSS Animatie voor de klok */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        #clock {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 20px 0;
+            display: inline-block;
+            animation: pulse 2s infinite ease-in-out; /* De animatie toepassen */
+        }
+
+        /* Toggle Button Styling */
+        .theme-btn {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border 0.3s;
+        }
+
+        a:hover { border-bottom: 2px solid #3498db; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button class="theme-btn" onclick="toggleTheme()">Switch Mode 🌓</button>
+        
+        <h1>Project 6ICW</h1>
+        <p>De tijd tikt voor de IT'ers van de toekomst:</p>
+        
+        <div id="clock">00:00:00</div>
+
+        <h3>Nuttige Links</h3>
+        <p><a href="https://secundair.heilig-graf.be/" target="_blank">Heilig Graf Secundair</a></p>
+    </div>
+
+    <script>
+        // Klok functionaliteit
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString('nl-BE');
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Dark/Light mode toggle
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+    </script>
+
+</body>
+</html>
